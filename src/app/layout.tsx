@@ -9,8 +9,8 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/ui/navbar";
 
 export const metadata: Metadata = {
-  title: "Watch Marketplace",
-  description: "A watch marketplace with financing options.",
+  title: "Nextjs-NextUI-Privy-Prisma",
+  description: "A simple template for nextjs/privy/prisma/nextui usage.",
 };
 
 export const viewport: Viewport = {
