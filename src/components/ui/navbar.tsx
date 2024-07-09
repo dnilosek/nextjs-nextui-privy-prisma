@@ -1,25 +1,39 @@
 "use client";
 
-import {
-  Navbar as NextUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@nextui-org/navbar";
+import { Navbar as NextUINavbar, NavbarContent } from "@nextui-org/navbar";
 
 import { Button } from "@nextui-org/button";
 
-import { usePrivy } from "@privy-io/react-auth";
+import { usePrivy, useLogin } from "@privy-io/react-auth";
 
 import NextLink from "next/link";
 
 import { UserDropdown } from "@/components/ui/user-dropdown";
 
 export const Navbar = () => {
-  const { login, ready, authenticated } = usePrivy();
+  const { ready, authenticated, logout, getAccessToken } = usePrivy();
+  const { login } = useLogin({
+    onComplete: async (user) => {
+      // post user id to auth api
+      const token = await getAccessToken();
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: user.id,
+          wallet: user.wallet ? user.wallet.address : "",
+        }),
+      });
+
+      // Logout if the request fails
+      if (!response.ok) {
+        logout();
+      }
+    },
+  });
 
   return (
     <NextUINavbar maxWidth="xl">

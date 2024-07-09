@@ -12,12 +12,14 @@
     "@nextui-org/react": "^2.4.2",
     "@prisma/client": "^5.16.1",
     "@privy-io/react-auth": "^1.73.2",
+    "@privy-io/server-auth": "^1.9.0",
     "framer-motion": "^11.2.13",
     "next": "14.2.4",
     "next-themes": "^0.3.0",
     "prisma": "^5.16.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

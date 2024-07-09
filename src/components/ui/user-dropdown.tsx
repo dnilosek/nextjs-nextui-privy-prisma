@@ -9,16 +9,12 @@ import {
 import { Button } from "@nextui-org/button";
 import { usePrivy } from "@privy-io/react-auth";
 
-import { getPrivyUsername } from "@/util/privy";
-
 export const UserDropdown = () => {
   const { user, ready, authenticated, logout } = usePrivy();
 
   if (!(ready && authenticated) || !user) {
     return null;
   }
-
-  const userName = getPrivyUsername(user);
 
   return (
     <Dropdown>
